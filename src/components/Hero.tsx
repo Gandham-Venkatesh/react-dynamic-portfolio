@@ -172,7 +172,7 @@ const Hero: React.FC<HeroProps> = ({ darkMode, personalInfo }) => {
               <div className="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-gradient-to-r from-indigo-500 to-purple-600 p-1">
                 <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-indigo-100 to-purple-100">
                   <img
-                    src="/src/assets/IMG_20250711_151556.jpg"
+                    src="/profile.jpg"
                     alt="Gandham Venkatesh"
                     className="w-full h-full object-cover object-center"
                   />
