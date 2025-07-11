@@ -9,7 +9,7 @@ export const initialPortfolioData: PortfolioData = {
     github: "https://github.com/Gandham-Venkatesh",
     college: "Nalla Narsimha Reddy Group of Institutions",
     cgpa: "8.85",
-    about: "Hey there! I'm Gandham Venkatesh, a 4th-year B.Tech student specializing in Artificial Intelligence and Machine Learning at Nalla Narsimha Reddy Group of Institutions (CGPA: 8.85).\n\nI'm a passionate full-stack developer who loves building AI-powered, offline-first tools, web apps, and developer utilities. From integrating TinyLLaMA models in Android apps to creating full-stack projects using React, Flask, FastAPI, and Node.js, I thrive on learning and shipping useful tools.\n\nI enjoy blending backend logic, machine learning, and beautiful frontend UI — and I'm currently exploring Agentic AI systems, n8n automation, and LangChain pipelines.\n\nWhether it's writing clean APIs, building full dashboards, or creating LLM tools that run without internet, I'm always excited to build, break, and learn something new.",
+    about: "Hey there! I'm Gandham Venkatesh, a 4th-year B.Tech student specializing in Artificial Intelligence and Machine Learning at Nalla Narsimha Reddy Group of Institutions (CGPA: 8.85).\n\nI'm a passionate full-stack developer who loves building AI-powered, offline-first tools, web apps, and developer utilities. From integrating TinyLLaMA models in Android apps to creating full-stack projects using React, Flask, FastAPI, and Node.js, I thrive on learning and shipping useful tools.\n\nWhether it's writing clean APIs, building full dashboards, or creating LLM tools that run without internet, I'm always excited to build, break, and learn something new.",
     currentlyExploring: [
       "Agentic AI systems",
       "LangChain and LlamaIndex", 
@@ -18,7 +18,7 @@ export const initialPortfolioData: PortfolioData = {
       "Offline LLaMA tools"
     ],
     resumeLink: "https://drive.google.com/file/d/1vk_JOPiHLglAaOlKBd4cPD-ISHpTYhWc/view?usp=drive_link",
-    professionalSummary: "A highly motivated and fast-learning Full Stack Developer & AI Enthusiast, currently pursuing B.Tech in Artificial Intelligence and Machine Learning with a CGPA of 8.85.\n\nSkilled in building production-ready web apps using React, Node.js, FastAPI, and Flask, and developing smart tools using Python, TinyLLaMA, and n8n. Completed an internship at TURTIL, where I developed an AI-based recommendation engine and rule-driven nudging system.\n\nStrong in REST API design, microservice integration, offline AI deployment (llama.cpp + Termux), and project architecture.\n\nActively working on agentic AI automation and interested in building scalable tools that combine AI logic, usability, and real-world value.\n\nSeeking opportunities in backend, full-stack, or AI-driven product teams where I can contribute to high-impact tech solutions."
+    professionalSummary: "A highly motivated and fast-learning Full Stack Developer & AI Enthusiast, currently pursuing B.Tech in Artificial Intelligence and Machine Learning with a CGPA of 8.85.\n\nSkilled in building production-ready web apps using React, Node.js, FastAPI, and Flask, and developing smart tools using Python, TinyLLaMA, and n8n. Completed an internship at TURTIL, where I developed an AI-based recommendation engine and rule-driven nudging system.\n\nStrong in REST API design, microservice integration, offline AI deployment (llama.cpp + Termux), and project architecture."
   },
   skills: [
     {

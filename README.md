@@ -9,7 +9,7 @@ The best part? You don't need to touch any component code. Just update a single 
 
 ### ✨ Live Demo
 
-**[your-portfolio-url.com](https://your-portfolio-url.com)**
+**[Venkatesh Gandham Portfolio](https://venkatesh-gandham.netlify.app/)**
 
 ---
 
