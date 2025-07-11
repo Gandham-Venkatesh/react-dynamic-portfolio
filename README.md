@@ -36,7 +36,7 @@ Make sure you have Node.js and npm (or yarn) installed on your machine.
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/Gandham-Venkatesh/react-dynamic-portfolio.git](https://github.com/Gandham-Venkatesh/react-dynamic-portfolio.git)
+    git clone https://github.com/Gandham-Venkatesh/react-dynamic-portfolio.git
     ```
 2.  **Navigate to the project directory:**
     ```bash
