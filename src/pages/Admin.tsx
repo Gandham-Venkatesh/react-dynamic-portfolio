@@ -27,11 +27,11 @@ const Admin: React.FC = () => {
     }
   }, [darkMode]);
 
-  const handleLogin = (password: string) => {
-    if (password === 'Qwerasdzx@123') {
-      setIsAuthenticated(true);
-      sessionStorage.setItem('adminAuth', 'true');
-    }
+  // THIS IS THE CORRECTED FUNCTION
+  // We removed the password check here because AdminLogin already does it.
+  const handleLogin = () => {
+    setIsAuthenticated(true);
+    sessionStorage.setItem('adminAuth', 'true');
   };
 
   const handleLogout = () => {
@@ -40,6 +40,7 @@ const Admin: React.FC = () => {
   };
 
   if (!isAuthenticated) {
+    // We pass the corrected handleLogin function here.
     return <AdminLogin onLogin={handleLogin} darkMode={darkMode} />;
   }
 
