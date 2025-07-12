@@ -14,7 +14,11 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin, darkMode }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (password === 'Qwerasdzx@123') {
+    
+    // This is the only line we changed. It now securely gets the password from Netlify.
+    const correctPassword = import.meta.env.VITE_ADMIN_PASSWORD;
+
+    if (password === correctPassword) {
       onLogin(password);
       setError('');
     } else {
