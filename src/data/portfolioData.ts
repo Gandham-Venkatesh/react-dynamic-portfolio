@@ -18,7 +18,25 @@ export const initialPortfolioData: PortfolioData = {
       "Offline LLaMA tools"
     ],
     resumeLink: "https://drive.google.com/file/d/1vk_JOPiHLglAaOlKBd4cPD-ISHpTYhWc/view?usp=drive_link",
-    professionalSummary: "A highly motivated and fast-learning Full Stack Developer & AI Enthusiast, currently pursuing B.Tech in Artificial Intelligence and Machine Learning with a CGPA of 8.85.\n\nSkilled in building production-ready web apps using React, Node.js, FastAPI, and Flask, and developing smart tools using Python, TinyLLaMA, and n8n. Completed an internship at TURTIL, where I developed an AI-based recommendation engine and rule-driven nudging system.\n\nStrong in REST API design, microservice integration, offline AI deployment (llama.cpp + Termux), and project architecture."
+    professionalSummary: "A highly motivated and fast-learning Full Stack Developer & AI Enthusiast, currently pursuing B.Tech in Artificial Intelligence and Machine Learning with a CGPA of 8.85.\n\nSkilled in building production-ready web apps using React, Node.js, FastAPI, and Flask, and developing smart tools using Python, TinyLLaMA, and n8n. Completed an internship at TURTIL, where I developed an AI-based recommendation engine and rule-driven nudging system.\n\nStrong in REST API design, microservice integration, offline AI deployment (llama.cpp + Termux), and project architecture.",
+    tagline: "I craft AI-powered, full-stack tools that blend intelligence with impact.",
+    loopingTexts: [
+      "Tech Enthusiast",
+      "AI Explorer",
+      "Full Stack Developer",
+      "Automation Builder",
+      "Offline GPT Creator",
+      "Python & React Dev",
+      "TinyLLaMA Integrator",
+      "Agentic AI Engineer",
+      "LLM Tinkerer",
+      "n8n Workflow Architect",
+      "FastAPI Lover",
+      "Creative Debugger",
+      "Visionary Coder",
+      "Open Source Contributor"
+    ],
+    profileImage: "/profile.jpg"
   },
   skills: [
     {

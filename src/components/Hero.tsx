@@ -2,29 +2,15 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Download, Github, Linkedin, Mail, ArrowDown } from 'lucide-react';
 import TypingAnimation from './TypingAnimation';
+import { PersonalInfo } from '../types'; // Import the specific type for better type safety
 
 interface HeroProps {
   darkMode: boolean;
-  personalInfo: any;
+  personalInfo: PersonalInfo; // Use the specific type instead of 'any'
 }
 
 const Hero: React.FC<HeroProps> = ({ darkMode, personalInfo }) => {
-  const typingTexts = [
-    'Tech Enthusiast',
-    'AI Explorer',
-    'Full Stack Developer',
-    'Automation Builder',
-    'Offline GPT Creator',
-    'Python & React Dev',
-    'TinyLLaMA Integrator',
-    'Agentic AI Engineer',
-    'LLM Tinkerer',
-    'n8n Workflow Architect',
-    'FastAPI Lover',
-    'Creative Debugger',
-    'Visionary Coder',
-    'Open Source Contributor'
-  ];
+  // We no longer need the hardcoded typingTexts array here, it will come from props.
 
   const scrollToNext = () => {
     const aboutSection = document.querySelector('#about');
@@ -54,7 +40,8 @@ const Hero: React.FC<HeroProps> = ({ darkMode, personalInfo }) => {
             >
               Hey there, I'm{' '}
               <span className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-                Gandham Venkatesh
+                {/* DYNAMIC NAME from portfolioData.ts */}
+                {personalInfo.name}
               </span>{' '}
               👋
             </motion.h1>
@@ -67,7 +54,8 @@ const Hero: React.FC<HeroProps> = ({ darkMode, personalInfo }) => {
                 darkMode ? 'text-gray-300' : 'text-gray-600'
               }`}
             >
-              I craft AI-powered, full-stack tools that blend intelligence with impact.
+              {/* DYNAMIC TAGLINE from portfolioData.ts */}
+              {personalInfo.tagline}
             </motion.p>
 
             <motion.div
@@ -78,7 +66,8 @@ const Hero: React.FC<HeroProps> = ({ darkMode, personalInfo }) => {
                 darkMode ? 'text-gray-400' : 'text-gray-500'
               }`}
             >
-              <TypingAnimation texts={typingTexts} />
+              {/* DYNAMIC LOOPING TEXTS from portfolioData.ts */}
+              <TypingAnimation texts={personalInfo.loopingTexts || []} />
             </motion.div>
 
             {/* CTA Buttons */}
@@ -172,8 +161,9 @@ const Hero: React.FC<HeroProps> = ({ darkMode, personalInfo }) => {
               <div className="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden shadow-2xl border-4 border-gradient-to-r from-indigo-500 to-purple-600 p-1">
                 <div className="w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-indigo-100 to-purple-100">
                   <img
-                    src="/profile.jpg"
-                    alt="Gandham Venkatesh"
+                    // DYNAMIC IMAGE SOURCE AND ALT TEXT from portfolioData.ts
+                    src={personalInfo.profileImage}
+                    alt={personalInfo.name}
                     className="w-full h-full object-cover object-center"
                   />
                 </div>

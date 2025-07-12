@@ -1,12 +1,3 @@
-export interface Project {
-  id: string;
-  name: string;
-  description: string;
-  link: string;
-  tags: string[];
-  visible: boolean;
-}
-
 export interface Skill {
   name: string;
   level: number;
@@ -17,6 +8,24 @@ export interface SkillCategory {
   skills: Skill[];
 }
 
+export interface Project {
+  id: string;
+  name: string;
+  description: string;
+  link: string;
+  tags: string[];
+  visible: boolean;
+}
+
+export interface Internship {
+  company: string;
+  role: string;
+  duration: string;
+  description: string[];
+}
+
+// --- MAIN CHANGE IS HERE ---
+// We are adding the new fields to the PersonalInfo interface
 export interface PersonalInfo {
   name: string;
   title: string;
@@ -29,13 +38,11 @@ export interface PersonalInfo {
   currentlyExploring: string[];
   resumeLink: string;
   professionalSummary: string;
-}
-
-export interface Internship {
-  company: string;
-  role: string;
-  duration: string;
-  description: string[];
+  
+  // --- NEW FIELDS FOR HERO SECTION ---
+  tagline?: string;
+  loopingTexts?: string[];
+  profileImage?: string;
 }
 
 export interface PortfolioData {
