@@ -17,6 +17,8 @@ const AdminLogin: React.FC<AdminLoginProps> = ({ onLogin, darkMode }) => {
     
     // This is the only line we changed. It now securely gets the password from Netlify.
     const correctPassword = import.meta.env.VITE_ADMIN_PASSWORD;
+    console.log("Password you entered:", password);
+    console.log("Secret password from Netlify:", correctPassword);
 
     if (password === correctPassword) {
       onLogin(password);
