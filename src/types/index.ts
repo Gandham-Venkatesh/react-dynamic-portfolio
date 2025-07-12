@@ -38,8 +38,6 @@ export interface PersonalInfo {
   currentlyExploring: string[];
   resumeLink: string;
   professionalSummary: string;
-  
-  // --- NEW FIELDS FOR HERO SECTION ---
   tagline?: string;
   loopingTexts?: string[];
   profileImage?: string;

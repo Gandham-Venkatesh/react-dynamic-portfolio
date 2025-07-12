@@ -1,6 +1,7 @@
 import { PortfolioData } from '../types';
 
 export const initialPortfolioData: PortfolioData = {
+  
   personalInfo: {
     name: "Gandham Venkatesh",
     title: "🚀 Passionate Developer | 🛠️ Tech Explorer | 🎓 B.Tech 4th Year Student",
