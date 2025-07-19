@@ -17,15 +17,26 @@ export interface Project {
   visible: boolean;
 }
 
-export interface Internship {
-  company: string;
+// --- NEW TYPES FOR EXPERIENCE AND EDUCATION ---
+
+// This new type allows for multiple experience entries
+export interface ExperienceItem {
+  id: string;
   role: string;
+  company: string;
   duration: string;
   description: string[];
 }
 
-// --- MAIN CHANGE IS HERE ---
-// We are adding the new fields to the PersonalInfo interface
+// This new type is for the education timeline
+export interface EducationItem {
+  id: string;
+  institution: string;
+  degree: string;
+  duration: string; // Or you can use a 'cgpa' field if you prefer
+}
+
+
 export interface PersonalInfo {
   name: string;
   title: string;
@@ -47,5 +58,7 @@ export interface PortfolioData {
   personalInfo: PersonalInfo;
   skills: SkillCategory[];
   projects: Project[];
-  internship: Internship;
+  // We are replacing 'internship' with an array 'experiences'
+  experiences: ExperienceItem[]; 
+  education: EducationItem[]; // Adding education array
 }

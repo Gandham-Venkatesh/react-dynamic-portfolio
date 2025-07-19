@@ -10,6 +10,7 @@ import Skills from '../components/Skills';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import { usePortfolioData } from '../hooks/usePortfolioData';
+import Loader from '../components/Loader'; 
 
 const Portfolio: React.FC = () => {
   const [darkMode, setDarkMode] = useState(() => {
@@ -17,7 +18,7 @@ const Portfolio: React.FC = () => {
     return saved ? JSON.parse(saved) : true;
   });
 
-  const { data } = usePortfolioData();
+  const { data, loading } = usePortfolioData();
 
   useEffect(() => {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
@@ -32,16 +33,28 @@ const Portfolio: React.FC = () => {
     setDarkMode(!darkMode);
   };
 
+  if (loading) {
+    return <Loader />;
+  }
+
   return (
     <div className={`${darkMode ? 'dark bg-gray-900' : 'bg-white'} transition-colors duration-300`}>
       <ParticleBackground />
       <Navigation darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <Hero darkMode={darkMode} personalInfo={data.personalInfo} />
-      <About darkMode={darkMode} personalInfo={data.personalInfo} />
+      <About 
+        darkMode={darkMode} 
+        personalInfo={data.personalInfo} 
+        education={data.education || []} 
+      />
       <Resume darkMode={darkMode} personalInfo={data.personalInfo} />
-      <Projects darkMode={darkMode} projects={data.projects} />
-      <Experience darkMode={darkMode} internship={data.internship} />
-      <Skills darkMode={darkMode} skills={data.skills} />
+      <Projects darkMode={darkMode} projects={data.projects || []} />
+      
+      {/* --- THIS IS THE CORRECTED LINE --- */}
+      {/* We add '|| []' to prevent crashes if the 'experiences' array doesn't exist yet */}
+      <Experience darkMode={darkMode} experiences={data.experiences || []} />
+      
+      <Skills darkMode={darkMode} skills={data.skills || []} />
       <Contact darkMode={darkMode} personalInfo={data.personalInfo} />
       <Footer darkMode={darkMode} />
     </div>

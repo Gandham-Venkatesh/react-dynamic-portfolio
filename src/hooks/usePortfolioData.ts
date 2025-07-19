@@ -1,38 +1,48 @@
 import { useState, useEffect } from 'react';
 import { PortfolioData } from '../types';
 import { initialPortfolioData } from '../data/portfolioData';
-import _ from 'lodash'; // Make sure lodash is installed
+import { db } from '../firebase'; // Import our new firebase config
+import { doc, onSnapshot, setDoc } from 'firebase/firestore';
 
 export const usePortfolioData = () => {
-  const [data, setData] = useState<PortfolioData>(() => {
-    try {
-      const saved = localStorage.getItem('portfolioData');
-      if (saved) {
-        const savedData = JSON.parse(saved);
-        
-        // --- SIMPLIFIED & CORRECTED LOGIC ---
-        // We always merge the data from the code (initialPortfolioData)
-        // on top of the saved data. This ensures any updates in the code
-        // (like your tagline change) are always reflected, while preserving 
-        // user edits from the admin dashboard on other fields.
-        console.log("Merging saved data with initial data from code.");
-        return _.merge({}, savedData, initialPortfolioData);
-      }
-    } catch (error) {
-      console.error("Failed to process portfolio data from localStorage", error);
-    }
-    // No saved data or error, return fresh initial data
-    return initialPortfolioData;
-  });
+  // Start with the initial data, so the site doesn't break while loading
+  const [data, setData] = useState<PortfolioData>(initialPortfolioData);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // This effect saves data back to localStorage whenever it changes.
-    localStorage.setItem('portfolioData', JSON.stringify(data));
-  }, [data]);
+    // Reference to our specific document in Firestore
+    const docRef = doc(db, "portfolio", "mainData");
 
-  const updateData = (newData: Partial<PortfolioData>) => {
-    setData(prev => ({ ...prev, ...newData }));
+    // onSnapshot listens for real-time changes to the document
+    const unsubscribe = onSnapshot(docRef, (docSnap) => {
+      if (docSnap.exists()) {
+        console.log("✅ Fetched data from Firebase!");
+        setData(docSnap.data() as PortfolioData);
+      } else {
+        // This case should not happen if you've run the seed script
+        console.log("No such document in Firebase! Showing default data.");
+      }
+      setLoading(false);
+    }, (error) => {
+      console.error("❌ Error fetching data from Firebase: ", error);
+      setLoading(false);
+    });
+
+    // Cleanup function to stop listening when the component unmounts
+    return () => unsubscribe();
+  }, []); // The empty array ensures this effect runs only once on mount
+
+  const updateData = async (newData: Partial<PortfolioData>) => {
+    const docRef = doc(db, "portfolio", "mainData");
+    try {
+      // We use { merge: true } to only update the fields that have changed,
+      // without overwriting the entire document.
+      await setDoc(docRef, newData, { merge: true });
+      console.log("✅ Data successfully updated in Firebase!");
+    } catch (error) {
+      console.error("❌ Error updating data in Firebase: ", error);
+    }
   };
 
-  return { data, updateData };
+  return { data, loading, updateData };
 };

@@ -1,33 +1,21 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { GraduationCap, Award, Code, Lightbulb } from 'lucide-react';
+import { EducationItem, PersonalInfo } from '../types';
 
 interface AboutProps {
   darkMode: boolean;
-  personalInfo: any;
+  personalInfo: PersonalInfo;
+  education: EducationItem[];
 }
 
-const About: React.FC<AboutProps> = ({ darkMode, personalInfo }) => {
-  const education = [
-    {
-      institution: "Nalla Narsimha Reddy Group of Institutions",
-      degree: "B.Tech (AI & ML)",
-      grade: "CGPA 8.85",
-      icon: <GraduationCap className="w-6 h-6" />
-    },
-    {
-      institution: "Vasundhara Jr. College",
-      degree: "Intermediate",
-      grade: "91.8%",
-      icon: <Award className="w-6 h-6" />
-    },
-    {
-      institution: "Modern High School",
-      degree: "Secondary Education",
-      grade: "10 CGPA",
-      icon: <Award className="w-6 h-6" />
+const About: React.FC<AboutProps> = ({ darkMode, personalInfo, education }) => {
+  const getEducationIcon = (index: number) => {
+    if (index === 0) {
+      return <GraduationCap className="w-6 h-6" />;
     }
-  ];
+    return <Award className="w-6 h-6" />;
+  };
 
   return (
     <section id="about" className={`py-20 ${darkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
@@ -47,7 +35,7 @@ const About: React.FC<AboutProps> = ({ darkMode, personalInfo }) => {
           <div className="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-600 mx-auto rounded-full"></div>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
           {/* Bio Section */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -69,14 +57,13 @@ const About: React.FC<AboutProps> = ({ darkMode, personalInfo }) => {
               <p className={`text-lg leading-relaxed mb-6 ${
                 darkMode ? 'text-gray-300' : 'text-gray-600'
               }`}>
-                {personalInfo.about.split('\n\n').map((paragraph: string, index: number) => (
+                {(personalInfo.about || '').split('\n\n').map((paragraph: string, index: number) => (
                   <span key={index} className="block mb-4 last:mb-0">
                     {paragraph}
                   </span>
                 ))}
               </p>
               
-              {/* Currently Exploring */}
               <div className="mb-6">
                 <div className="flex items-center mb-4">
                   <Lightbulb className="w-6 h-6 text-yellow-500 mr-2" />
@@ -87,7 +74,7 @@ const About: React.FC<AboutProps> = ({ darkMode, personalInfo }) => {
                   </h4>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {personalInfo.currentlyExploring.map((item: string, index: number) => (
+                  {(personalInfo.currentlyExploring || []).map((item: string, index: number) => (
                     <motion.span
                       key={index}
                       initial={{ opacity: 0, scale: 0.8 }}
@@ -118,9 +105,10 @@ const About: React.FC<AboutProps> = ({ darkMode, personalInfo }) => {
               Education Timeline
             </h3>
             <div className="space-y-6">
-              {education.map((edu, index) => (
+              {/* Safety Check: We use '(education || [])' to prevent crashes */}
+              {(education || []).map((edu, index) => (
                 <motion.div
-                  key={index}
+                  key={edu.id}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.2, duration: 0.6 }}
@@ -128,7 +116,7 @@ const About: React.FC<AboutProps> = ({ darkMode, personalInfo }) => {
                   whileHover={{ scale: 1.02 }}
                   className={`p-6 rounded-xl shadow-lg transition-all duration-300 ${
                     darkMode 
-                      ? 'bg-gray-800 hover:bg-gray-750' 
+                      ? 'bg-gray-800 hover:bg-gray-700' 
                       : 'bg-white hover:shadow-xl'
                   }`}
                 >
@@ -138,7 +126,7 @@ const About: React.FC<AboutProps> = ({ darkMode, personalInfo }) => {
                         darkMode ? 'bg-indigo-900' : 'bg-indigo-100'
                       }`}>
                         <div className="text-indigo-500">
-                          {edu.icon}
+                          {getEducationIcon(index)}
                         </div>
                       </div>
                     </div>
@@ -154,7 +142,7 @@ const About: React.FC<AboutProps> = ({ darkMode, personalInfo }) => {
                         {edu.degree}
                       </p>
                       <div className="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-gradient-to-r from-green-400 to-blue-500 text-white">
-                        {edu.grade}
+                        {edu.duration}
                       </div>
                     </div>
                   </div>

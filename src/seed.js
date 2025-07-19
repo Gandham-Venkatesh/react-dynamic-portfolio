@@ -1,6 +1,23 @@
-import { PortfolioData } from '../types';
+// This is the final, guaranteed script. It uses plain JavaScript with the correct 'import' syntax.
 
-export const initialPortfolioData: PortfolioData = {
+import { initializeApp } from "firebase/app";
+import { getFirestore, doc, setDoc } from "firebase/firestore";
+
+// Your Firebase Config (remains the same)
+const firebaseConfig = {
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
+};
+
+// --- MOST IMPORTANT STEP ---
+// Go to your 'src/data/portfolioData.ts' file and COPY the entire 'initialPortfolioData' object.
+// Then, PASTE it here to replace this placeholder object.
+// This ensures you are uploading the absolute latest version of your data.
+const portfolioDataToUpload = {
   personalInfo: {
     name: "Gandham Venkatesh",
     title: "🚀 Passionate Developer | 🛠️ Tech Explorer | 🎓 B.Tech 4th Year Student",
@@ -79,3 +96,26 @@ export const initialPortfolioData: PortfolioData = {
     }
   ]
 };
+
+
+// --- Script Logic ---
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const uploadData = async () => {
+  if (!portfolioDataToUpload.personalInfo) {
+    console.error("❌ ERROR: portfolioDataToUpload is empty! Please paste the data from portfolioData.ts into this script.");
+    return;
+  }
+  try {
+    console.log("Starting final data upload to Firestore...");
+    const docRef = doc(db, "portfolio", "mainData");
+    await setDoc(docRef, portfolioDataToUpload);
+    console.log("✅ Data successfully uploaded!");
+    console.log("You can now check your Firebase console and refresh your website.");
+  } catch (error) {
+    console.error("❌ Error uploading data: ", error);
+  }
+};
+
+uploadData();
